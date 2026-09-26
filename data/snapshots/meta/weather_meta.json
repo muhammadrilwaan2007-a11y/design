@@ -1,0 +1,7 @@
+{
+  "snapshot_id": "48eae5d1-478c-4943-9690-d9b66064553b",
+  "collected_at": "2026-09-24T06:30:52.239359+00:00",
+  "status": "failed",
+  "record_count": 0,
+  "error_message": "Weather API key not configured."
+}

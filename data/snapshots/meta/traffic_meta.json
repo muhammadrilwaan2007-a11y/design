@@ -1,0 +1,7 @@
+{
+  "snapshot_id": "b5aef69e-3e4d-4ea8-b2f9-116efd35343d",
+  "collected_at": "2026-09-24T06:30:52.238213+00:00",
+  "status": "failed",
+  "record_count": 0,
+  "error_message": "TOMTOM_API_KEY not configured"
+}

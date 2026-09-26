@@ -1,0 +1,29 @@
+# SafeRoute AI Backend — Python dependencies
+
+# ── Core API ─────────────────────────────────────────────────────────────────
+fastapi
+uvicorn[standard]
+python-dotenv
+httpx
+pydantic-settings
+
+# ── Module 6: Historical Accident Analysis ───────────────────────────────────
+geopandas          # geospatial DataFrames and spatial joins
+shapely            # geometric operations and Point/Polygon handling
+types-shapely      # PEP 561 type stubs for Shapely
+scikit-learn       # DBSCAN clustering for hotspot detection
+numpy              # vectorised distance computations
+pyproj             # CRS projection (used by geopandas internally)
+
+# ── Live Snapshot System (Module 7.5) ────────────────────────────────────────
+supabase>=2.0.0    # Official Supabase Python client (PostgREST + auth)
+
+# ── Module 8: Historical Risk Modeling ───────────────────────────────────────
+osmnx              # OpenStreetMap road network extraction
+networkx           # Graph logic for road routing/analysis
+xgboost            # Gradient boosting classifier/regressor (V2 historical model)
+scikit-learn       # Preprocessing, metrics, train-test split
+shap               # Local SHAP explanations (TreeSHAP) — explanation layer only, NOT used for scoring
+
+# ── LLM Safety Explanation Layer ─────────────────────────────────────────────
+groq>=0.9.0        # Groq client for GPT-OSS 120B explanation assistant

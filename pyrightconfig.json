@@ -1,0 +1,14 @@
+{
+  "include": [
+    "backend",
+    "scratch"
+  ],
+  "exclude": [
+    "**/node_modules",
+    "**/__pycache__"
+  ],
+  "extraPaths": [
+    "backend",
+    "C:\\Users\\Madhan\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages"
+  ]
+}
