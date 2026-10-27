@@ -31,6 +31,24 @@ import { getHistoricalRiskHeatmap } from '../services/featuresApi';
 import { getRouteRecommendation }  from '../utils/routeRecommendation';
 import { loadMapSession, saveMapSession } from '../utils/sessionStorage';
 
+export const BENGALURU_PRESETS = [
+ {
+  name: 'Koramangala ➔ Whitefield',
+  source: { name: 'Koramangala, Bengaluru', latitude: 12.9352, longitude: 77.6245 },
+  destination: { name: 'Whitefield, Bengaluru', latitude: 12.9698, longitude: 77.7499 },
+ },
+ {
+  name: 'Indiranagar ➔ Electronic City',
+  source: { name: 'Indiranagar, Bengaluru', latitude: 12.9784, longitude: 77.6408 },
+  destination: { name: 'Electronic City, Bengaluru', latitude: 12.8383, longitude: 77.6768 },
+ },
+ {
+  name: 'Majestic ➔ Hebbal',
+  source: { name: 'Majestic, Bengaluru', latitude: 12.9767, longitude: 77.5713 },
+  destination: { name: 'Hebbal, Bengaluru', latitude: 13.0358, longitude: 77.5970 },
+ },
+];
+
 export default function MapPage() {
  const initialSession = useMemo(() => loadMapSession(), []);
 
@@ -163,7 +181,7 @@ export default function MapPage() {
   if (userSelectedManually || !recommendedRoute) return;
   if (recommendedRoute.id !== selectedRoute?.id) {
    console.info(
-    `[SafeRoute AI] Auto-recommending route: ${recommendedRoute.id} ` +
+    `[RouteGuard AI] Auto-recommending route: ${recommendedRoute.id} ` +
     `(Score: ${recommendedScore ?? '—'}/100, isAlternative: ${isAlternativeRecommendation})`
    );
    selectRoute(recommendedRoute);
@@ -181,6 +199,12 @@ export default function MapPage() {
  const handleFindRoutes = useCallback(() => {
   if (source && destination) fetchRoutes(source, destination);
  }, [source, destination, fetchRoutes]);
+
+ const handleSelectBengaluruPreset = useCallback((preset = BENGALURU_PRESETS[0]) => {
+  setSource(preset.source);
+  setDestination(preset.destination);
+  fetchRoutes(preset.source, preset.destination);
+ }, [fetchRoutes]);
 
  const isFirstMount = useRef(true);
  const prevSourceRef = useRef(source);
@@ -215,7 +239,7 @@ export default function MapPage() {
   }
   if (routes.length > 0) {
    window.__saferoute_routes = routes;
-   console.info('[SafeRoute AI] Routes ready for Modules 3, 4, 5 & 8:', routes);
+   console.info('[RouteGuard AI] Routes ready for Modules 3, 4, 5 & 8:', routes);
    analyzeTrafficForRoutes(routes);
    analyzeIncidentsForRoutes(routes);
    analyzeFeatures(routes);  // Module 7 + 8: features & safety scores
@@ -324,8 +348,8 @@ export default function MapPage() {
  const handleTypeChange  = useCallback((type) => setSelectedLocationType(type), []);
 
  // ── Dynamic panel top position (based on search panel height) ────────────
- // Search panel ~160px + 16px top padding = 176; tab ~28px; total ~204px
- const PANEL_HEIGHT = 204;
+ // Search panel + presets ~200px + 16px top padding = 216; tab ~28px; total ~245px
+ const PANEL_HEIGHT = 245;
 
  return (
   <div className="relative w-screen h-screen overflow-hidden bg-slate-100 dark:bg-slate-900">
@@ -374,6 +398,22 @@ export default function MapPage() {
       locationError={locationError}
       onRequestLocation={getLocation}
      />
+     {/* ── Bengaluru Demo Route Presets ───────────────────────────── */}
+     <div className="mt-2.5 flex items-center justify-center gap-1.5 flex-wrap">
+      <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mr-1 flex items-center gap-1">
+       <span>📍</span> Bengaluru Demo:
+      </span>
+      {BENGALURU_PRESETS.map((p) => (
+       <button
+        key={p.name}
+        type="button"
+        onClick={() => handleSelectBengaluruPreset(p)}
+        className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-white/95 dark:bg-slate-800/95 border border-slate-200 dark:border-slate-700 hover:border-primary-500 text-slate-700 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400 shadow-xs transition-all backdrop-blur-xs cursor-pointer"
+       >
+        {p.name}
+       </button>
+      ))}
+     </div>
     </div>
    </div>
 
@@ -532,6 +572,7 @@ export default function MapPage() {
         isSimulatedClosed={simulatedClosures.has(selectedRoute.id)}
         onRetryFeatures={retryFeatures}
         onOpenAiAssistant={() => setAiDrawerOpen(true)}
+        onSelectPreset={() => handleSelectBengaluruPreset(BENGALURU_PRESETS[0])}
        />
       </div>
      )}

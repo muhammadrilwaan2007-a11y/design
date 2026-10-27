@@ -1,7 +1,7 @@
 """
 backend/app/api/ai_assistant.py
 ===============================
-FastAPI router for SafeRoute AI's LLM-powered AI Safety Assistant.
+FastAPI router for RouteGuard AI's LLM-powered AI Safety Assistant.
 Interacts with Groq API and GPT-OSS 120B as an explanation layer.
 
 Endpoints:
@@ -439,12 +439,16 @@ async def explain_route(request: ExplainRouteRequest) -> ExplainRouteResponse:
 @router.post(
     "/ask",
     response_model=AskQuestionResponse,
-    summary="Ask SafeRoute AI about the displayed route or risk factors",
-    description="Answers user queries strictly grounded in SafeRoute AI evidence.",
+    summary="Ask RouteGuard AI about the displayed route or risk factors",
+    description="Answers user queries strictly grounded in RouteGuard AI evidence.",
 )
 async def ask_ai_assistant(request: AskQuestionRequest) -> AskQuestionResponse:
     """
     POST /api/ai/ask
+
+    Builds rich context including live conditions and any available route/section
+    data before calling the LLM, so it can give meaningful answers even when no
+    specific road section is selected.
     """
     llm_service = get_llm_service()
     engine = get_risk_engine()
@@ -452,15 +456,67 @@ async def ask_ai_assistant(request: AskQuestionRequest) -> AskQuestionResponse:
     score = None
     context: Dict[str, Any] = {"question": request.question}
 
+    # ── Section-level context: OSM edge safety data ───────────────────────────
     if request.osm_edge_id and request.osm_edge_id in engine._edge_cache:
         rp, cp, sc = engine._edge_cache[request.osm_edge_id]
         score = sc
-        context["edge_id"] = request.osm_edge_id
-        context["safety_score"] = sc
-        context["calibrated_historical_risk"] = cp
+        context["selected_section"] = {
+            "edge_id": request.osm_edge_id,
+            "safety_score": sc,
+            "calibrated_historical_risk": round(cp, 4),
+            "raw_risk_prob": round(rp, 4),
+        }
+        # Include SHAP explanation for the selected section
+        shap_res = engine.explain_edge(request.osm_edge_id)
+        if shap_res and "top_factors" in shap_res:
+            context["selected_section"]["top_shap_factors"] = [
+                {
+                    "feature": f.get("label", f.get("feature", "")),
+                    "direction": f.get("direction", "neutral"),
+                    "explanation": format_shap_statement(f.get("feature", ""), f.get("direction", "neutral")),
+                }
+                for f in shap_res["top_factors"][:3]
+            ]
+
+    # ── Route-level context: safety score from alternative_routes list ────────
+    if request.route_id:
+        context["selected_route_id"] = request.route_id
 
     if request.alternative_routes:
         context["alternative_routes"] = request.alternative_routes
+        # If no edge selected, use the first route's score as the primary context
+        if score is None and request.alternative_routes:
+            primary = next(
+                (r for r in request.alternative_routes if r.get("route_id") == request.route_id),
+                None,
+            )
+            if primary and primary.get("safety_score") is not None:
+                score = primary["safety_score"]
+                context["route_safety_score"] = score
+
+    # ── Live conditions: always fetch so the LLM can answer weather/traffic Q's
+    try:
+        traffic_cond, incidents_near, weather_data = await _get_live_conditions_near_point(
+            lat=12.9716,  # Bengaluru city center — general context when no section selected
+            lon=77.5946,
+        )
+        context["live_conditions"] = {
+            "traffic": traffic_cond,
+            "incidents_count": len(incidents_near),
+            "incidents": incidents_near[:3],  # cap to avoid bloating context
+            "weather": weather_data,
+        }
+    except Exception as exc:
+        logger.warning("[AI Assistant /ask] Could not fetch live conditions: %s", exc)
+
+    # ── System-level context hint for the LLM ─────────────────────────────────
+    context["system_note"] = (
+        "This is RouteGuard AI for Bengaluru road safety. "
+        "Answer the user question using the evidence provided. "
+        "If a specific field is missing, say it is unavailable. "
+        "For general greetings or off-topic questions, briefly introduce yourself "
+        "and invite the user to ask about route safety, risk factors, or live conditions."
+    )
 
     answer = llm_service.answer_question(context, request.question)
     status_str = "ok" if llm_service.is_available and answer != FALLBACK_EXPLANATION else "fallback"

@@ -1,19 +1,19 @@
-# SafeRoute AI 🗺️🛡️
+﻿# RouteGuard AI 🗺️🛡️
 
 [![React](https://img.shields.io/badge/React-18-blue.svg)](https://reactjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688.svg)](https://fastapi.tiangolo.com/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC.svg)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**SafeRoute AI** is an intelligent navigation system designed for high-density, chaotic urban traffic environments (primarily built for Bengaluru). 
+**RouteGuard AI** is an intelligent navigation system designed for high-density, chaotic urban traffic environments (primarily built for Bengaluru). 
 
-While traditional navigation apps focus strictly on the *fastest* route, SafeRoute AI goes a step further by evaluating the **safest** route. It aggregates live traffic, active incidents, hyper-local weather, and historical accident hotspots to predict route risk and steer drivers away from danger.
+While traditional navigation apps focus strictly on the *fastest* route, RouteGuard AI goes a step further by evaluating the **safest** route. It aggregates live traffic, active incidents, hyper-local weather, and historical accident hotspots to predict route risk and steer drivers away from danger.
 
 ---
 
 ## 🌟 Core Features & Modules
 
-SafeRoute AI is built modularly. Here is the current progress of the core system:
+RouteGuard AI is built modularly. Here is the current progress of the core system:
 
 - ✅ **Module 1: Location & Search** — Geocoding and reverse geocoding via TomTom Search API.
 - ✅ **Module 2: Traffic-Aware Routing** — Core routing engine powered by the TomTom Routing API, generating real-time ETAs that actively detour around jams and closed roads.

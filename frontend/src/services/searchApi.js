@@ -1,6 +1,6 @@
-/**
+﻿/**
  * searchApi.js
- * TomTom Search API wrapper for SafeRoute AI.
+ * TomTom Search API wrapper for RouteGuard AI.
  *
  * Docs: https://developer.tomtom.com/search-api/documentation/search-service/fuzzy-search
  *

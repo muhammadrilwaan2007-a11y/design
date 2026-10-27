@@ -1,7 +1,7 @@
-"""
+﻿"""
 ml/train_xgboost_geo_split.py
 ================================
-SafeRoute AI — XGBoost Experiment 3: Geographic Block-Split
+RouteGuard AI — XGBoost Experiment 3: Geographic Block-Split
 ============================================================
 
 Replaces the random stratified split with a reproducible spatial grid.
@@ -136,7 +136,7 @@ def evaluate(name, model, X, y_true):
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 def main():
-    hr("SafeRoute AI — Experiment 3: Geographic Block-Split")
+    hr("RouteGuard AI — Experiment 3: Geographic Block-Split")
 
     # 1. Load road network WITH geometry (needed for centroid)
     hr("STEP 1 — Load OSM Roads with Geometry")

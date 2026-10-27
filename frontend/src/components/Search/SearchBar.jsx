@@ -1,4 +1,4 @@
-/**
+﻿/**
  * SearchBar.jsx
  * Dual-input search panel (Source + Destination) with TomTom autocomplete.
  *
@@ -173,7 +173,7 @@ export default function SearchBar({
      strokeWidth={2.5}
     />
     <span className="font-semibold text-sm text-primary-700 dark:text-primary-300 tracking-wide">
-     SafeRoute AI
+     RouteGuard AI
     </span>
     <span className="ml-auto text-xs text-slate-400 dark:text-slate-500 font-medium">
      Bengaluru

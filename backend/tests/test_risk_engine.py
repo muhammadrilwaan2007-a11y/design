@@ -1,7 +1,7 @@
-"""
+﻿"""
 backend/tests/test_risk_engine.py
 ==================================
-SafeRoute AI — Module 8 Integration Test
+RouteGuard AI — Module 8 Integration Test
 
 Tests the RiskEngine against real project data (not mocked).
 Uses the existing xgboost_baseline.json model and real SegmentFeatureVector

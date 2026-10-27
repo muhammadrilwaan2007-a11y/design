@@ -1,5 +1,5 @@
-# conftest.py
-# Pytest configuration for the SafeRoute AI backend test suite.
+﻿# conftest.py
+# Pytest configuration for the RouteGuard AI backend test suite.
 # This file at the backend/ root ensures pytest can discover and import
 # app modules correctly when running:
 #   pytest tests/test_module7.py -v

@@ -22,7 +22,7 @@
  *  error  — string | null
  */
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, RotateCw } from 'lucide-react';
 
@@ -108,82 +108,114 @@ function ScoreSkeleton() {
 }
 
 // ── Main component ─────────────────────────────────────────────────────────────
-export default function SafetyScoreCard({ score, category, loading, error, onRetry }) {
- const animatedScore      = useCountUp(score ?? 0);
+export default function SafetyScoreCard({ score, category, loading, error, onRetry, route, onSelectPreset }) {
+	const animatedScore      = useCountUp(score ?? 0);
 
- // While backend score hasn't arrived yet, show 0 in the ring
- const displayScore = score ?? 0;
- const visuals   = getScoreVisuals(displayScore, category);
+	// Detect if route geometry is outside the Bengaluru training data boundary
+	const isOutsideCoverage = useMemo(() => {
+		const coords = route?.geometry?.coordinates;
+		if (!coords || coords.length === 0) return false;
+		const [lon, lat] = coords[0];
+		// Bengaluru urban bounding box approx: lat [12.75, 13.25], lon [77.40, 77.85]
+		return lat < 12.75 || lat > 13.25 || lon < 77.40 || lon > 77.85;
+	}, [route]);
 
- // ── Loading ──────────────────────────────────────────────────────────────────
- if (loading) {
-  return (
-   <div
-    className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm p-4"
-    aria-label="Safety score loading"
-   >
-    <div className="flex items-center justify-between mb-3">
-     <div className="flex items-center gap-2">
-      <ShieldCheck size={15} className="text-primary-500 animate-pulse" />
-      <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">
-       Safety Score
-      </span>
-     </div>
-     <span className="text-[11px] text-slate-400 animate-pulse">
-      Analyzing safety risk…
-     </span>
-    </div>
-    <ScoreSkeleton />
-   </div>
-  );
- }
+	// While backend score hasn't arrived yet, show 0 in the ring
+	const displayScore = score ?? 0;
+	const visuals   = getScoreVisuals(displayScore, category);
 
- // ── Error / Score unavailable ─────────────────────────────────────────────────
- if (error || score === null || score === undefined) {
-  return (
-   <div
-    className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm p-4"
-    aria-label="Safety score unavailable"
-   >
-    <div className="flex items-center justify-between gap-2 mb-2">
-     <div className="flex items-center gap-2">
-      <ShieldCheck size={15} className="text-slate-400 dark:text-slate-500" />
-      <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">
-       Safety Score
-      </span>
-     </div>
-     {onRetry && (
-      <button
-       type="button"
-       onClick={onRetry}
-       className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 hover:underline"
-       title="Retry safety score analysis"
-      >
-       <RotateCw size={11} />
-       Retry
-      </button>
-     )}
-    </div>
-    <p className="text-xs text-slate-400 dark:text-slate-500 italic mb-2">
-     {error
-      ? error.includes('service') || error.includes('timed out') || error.includes('failed')
-       ? 'Safety score temporarily unavailable. Click retry to analyze.'
-       : error
-      : 'Safety score unavailable'}
-    </p>
-    {onRetry && (
-     <button
-      type="button"
-      onClick={onRetry}
-      className="w-full mt-1 py-1.5 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 text-xs font-medium flex items-center justify-center gap-1.5 transition-colors shadow-xs"
-     >
-      <RotateCw size={12} />
-      Calculate Safety Score
-     </button>
-    )}
-   </div>
-  );
- }
+	// ── Loading ──────────────────────────────────────────────────────────────────
+	if (loading) {
+		return (
+			<div
+				className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm p-4"
+				aria-label="Safety score loading"
+			>
+				<div className="flex items-center justify-between mb-3">
+					<div className="flex items-center gap-2">
+						<ShieldCheck size={15} className="text-primary-500 animate-pulse" />
+						<span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+							Safety Score
+						</span>
+					</div>
+					<span className="text-[11px] text-slate-400 animate-pulse">
+						Analyzing safety risk…
+					</span>
+				</div>
+				<ScoreSkeleton />
+			</div>
+		);
+	}
+
+	// ── Error / Score unavailable ─────────────────────────────────────────────────
+	if (error || score === null || score === undefined) {
+		return (
+			<div
+				className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm p-4"
+				aria-label="Safety score unavailable"
+			>
+				<div className="flex items-center justify-between gap-2 mb-2">
+					<div className="flex items-center gap-2">
+						<ShieldCheck size={15} className="text-slate-400 dark:text-slate-500" />
+						<span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+							Safety Score
+						</span>
+					</div>
+					{onRetry && (
+						<button
+							type="button"
+							onClick={onRetry}
+							className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 hover:underline"
+							title="Retry safety score analysis"
+						>
+							<RotateCw size={11} />
+							Retry
+						</button>
+					)}
+				</div>
+
+				{isOutsideCoverage ? (
+					<div className="bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-lg p-2.5 text-xs text-amber-800 dark:text-amber-200">
+						<p className="font-semibold flex items-center gap-1.5 text-amber-700 dark:text-amber-300">
+							<span>📍</span> Route outside Bengaluru coverage
+						</p>
+						<p className="text-[11px] text-amber-600/90 dark:text-amber-400/90 mt-1 leading-relaxed">
+							RouteGuard AI's accident risk ML model is currently calibrated for the <strong>Bengaluru metropolitan road network</strong>. Select a route within Bengaluru to view Safety Scores and segment risk ratings.
+						</p>
+						{onSelectPreset && (
+							<button
+								type="button"
+								onClick={onSelectPreset}
+								className="mt-2 w-full py-1 px-2.5 rounded bg-amber-600 hover:bg-amber-700 text-white text-[11px] font-medium transition-colors"
+							>
+								Try a Bengaluru Route (Koramangala ➔ Whitefield)
+							</button>
+						)}
+					</div>
+				) : (
+					<>
+						<p className="text-xs text-slate-400 dark:text-slate-500 italic mb-2">
+							{error
+								? error.includes('service') || error.includes('timed out') || error.includes('failed')
+									? 'Safety score temporarily unavailable. Click retry to analyze.'
+									: error
+								: 'Safety score unavailable for this section'}
+						</p>
+						{onRetry && (
+							<button
+								type="button"
+								onClick={onRetry}
+								className="w-full mt-1 py-1.5 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 text-xs font-medium flex items-center justify-center gap-1.5 transition-colors shadow-xs"
+							>
+								<RotateCw size={12} />
+								Calculate Safety Score
+							</button>
+						)}
+					</>
+				)}
+			</div>
+		);
+	}
 
  // ── Normal render ────────────────────────────────────────────────────────────
  return (

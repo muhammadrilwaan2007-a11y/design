@@ -1,11 +1,11 @@
-/**
+﻿/**
  * frontend/src/components/Safety/AiAssistantDrawer.jsx
  * ====================================================
  * Interactive AI Safety Assistant side drawer.
  * Powered by Groq API + openai/gpt-oss-120b.
  *
  * Responsibilities:
- *  - Interactive Q&A grounded strictly in SafeRoute AI's structured evidence
+ *  - Interactive Q&A grounded strictly in RouteGuard AI's structured evidence
  *  - Contextual awareness of selected route, selected road section, and live conditions
  *  - Quick suggested queries for rapid user interaction
  *  - Clear disclaimer that scores are produced by backend XGBoost, not the LLM
@@ -48,7 +48,7 @@ export default function AiAssistantDrawer({
     {
       role: 'assistant',
       content:
-        "Hello! I am SafeRoute AI's safety explanation assistant. I can explain your route's Safety Score, contributing risk factors, and live traffic, closure, or weather conditions. What would you like to know?",
+        "Hello! I am RouteGuard AI's safety explanation assistant. I can explain your route's Safety Score, contributing risk factors, and live traffic, closure, or weather conditions. What would you like to know?",
     },
   ]);
   const [input, setInput] = useState('');
@@ -141,7 +141,7 @@ export default function AiAssistantDrawer({
               AI Safety Assistant
             </div>
             <div className="text-[10px] text-indigo-300/80 font-mono">
-              SafeRoute AI Intelligence
+              RouteGuard AI Intelligence
             </div>
           </div>
         </div>

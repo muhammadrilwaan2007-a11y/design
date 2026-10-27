@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
@@ -24,7 +24,7 @@ export default function FinalCTA() {
       onClick={() => navigate('/map')}
       whileHover={{ scale: 1.03, y: -1 }}
       whileTap={{ scale: 0.98 }}
-      className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-base sm:text-lg shadow-lg shadow-blue-600/20 transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-600/30"
+      className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-semibold text-base sm:text-lg shadow-lg shadow-indigo-500/20 transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-600/30"
      >
       <span>Open Safe Navigation</span>
       <ArrowRight className="w-5 h-5" />

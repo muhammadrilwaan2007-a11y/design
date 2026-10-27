@@ -1,7 +1,7 @@
-"""
+﻿"""
 backend/app/risk_engine.py
 ==========================
-SafeRoute AI — Module 8: Historical Risk Engine
+RouteGuard AI — Module 8: Historical Risk Engine
 
 Architecture
 ------------
@@ -270,7 +270,7 @@ def _prob_to_base_score(prob: float) -> int:
 
 class RiskEngine:
     """
-    Module 8 — SafeRoute AI Risk Engine.
+    Module 8 — RouteGuard AI Risk Engine.
 
     Singleton-like service: instantiate once at startup and reuse across all
     API requests. The XGBoost model is loaded from disk in __init__() and kept

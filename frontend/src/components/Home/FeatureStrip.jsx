@@ -1,13 +1,13 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 import { ShieldAlert, Car, AlertTriangle, CloudRain } from 'lucide-react';
 
 const features = [
  {
   icon: ShieldAlert,
   label: 'Accident Risk',
-  color: 'text-blue-600',
-  bgColor: 'bg-blue-50',
-  borderColor: 'border-blue-100',
+  color: 'text-indigo-600',
+  bgColor: 'bg-indigo-50',
+  borderColor: 'border-indigo-100',
  },
  {
   icon: Car,

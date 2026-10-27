@@ -1,7 +1,7 @@
-"""
+﻿"""
 backend/tests/test_heatmap.py
 =============================
-Comprehensive unit and integration tests for SafeRoute AI Historical Risk Heatmap.
+Comprehensive unit and integration tests for RouteGuard AI Historical Risk Heatmap.
 
 Validates all 10 core heatmap requirements:
 1. Heatmap outputs valid OSM road edges with true geometries.

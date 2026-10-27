@@ -3,35 +3,35 @@
 @import 'tailwindcss/utilities';
 
 /* ============================================================
-  SafeRoute AI — Global Styles
+  RouteGuard AI — Global Styles
   ============================================================ */
 
 :root {
- --color-primary: #2563EB;
- --color-secondary: #14B8A6;
- --color-accent: #F59E0B;
- --color-bg: #F8FAFC;
+ --color-primary: #6366F1;
+ --color-secondary: #06B6D4;
+ --color-accent: #F43F5E;
+ --color-bg: #F9FAFB;
  --color-surface: #FFFFFF;
  --color-text: #1E293B;
  --color-muted: #64748B;
  --color-border: #E2E8F0;
- --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08);
- --shadow-card-hover: 0 4px 20px rgba(0, 0, 0, 0.14);
+ --shadow-card: 0 2px 12px rgba(99, 102, 241, 0.08);
+ --shadow-card-hover: 0 4px 20px rgba(99, 102, 241, 0.16);
  --radius: 0.75rem;
 }
 
 /* Dark mode variables — applied when <html class="dark"> */
 .dark {
- --color-primary: #60A5FA;
- --color-secondary: #2DD4BF;
- --color-accent: #FBBF24;
- --color-bg: #0F172A;
- --color-surface: #1E293B;
+ --color-primary: #818CF8;
+ --color-secondary: #22D3EE;
+ --color-accent: #FB7185;
+ --color-bg: #0D1117;
+ --color-surface: #161B22;
  --color-text: #F1F5F9;
  --color-muted: #94A3B8;
- --color-border: #334155;
- --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.4);
- --shadow-card-hover: 0 4px 24px rgba(0, 0, 0, 0.55);
+ --color-border: #30363D;
+ --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.5);
+ --shadow-card-hover: 0 4px 24px rgba(129, 140, 248, 0.2);
 }
 
 /* Reset */
@@ -72,9 +72,9 @@ html, body, #root {
 
 /* Custom marker animation */
 @keyframes markerPulse {
- 0%  { box-shadow: 0 0 0 0  rgba(37, 99, 235, 0.5); }
- 70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);  }
- 100% { box-shadow: 0 0 0 0  rgba(37, 99, 235, 0);  }
+ 0%  { box-shadow: 0 0 0 0  rgba(99, 102, 241, 0.5); }
+ 70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);  }
+ 100% { box-shadow: 0 0 0 0  rgba(99, 102, 241, 0);  }
 }
 
 .current-location-dot {
@@ -110,7 +110,7 @@ html, body, #root {
 
 .sr-input:focus {
  border-color: var(--color-primary);
- box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+ box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
 .sr-input::placeholder {

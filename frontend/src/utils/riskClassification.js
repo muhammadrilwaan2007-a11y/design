@@ -1,7 +1,7 @@
-/**
+﻿/**
  * frontend/src/utils/riskClassification.js
  * ========================================
- * Statistically justified 4-tier quantile classification for SafeRoute AI
+ * Statistically justified 4-tier quantile classification for RouteGuard AI
  * Risk Heatmap.
  *
  * Derived from empirical distribution of risk

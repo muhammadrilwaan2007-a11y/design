@@ -1,5 +1,5 @@
-"""
-SafeRoute AI — Backend (FastAPI)
+﻿"""
+RouteGuard AI — Backend (FastAPI)
 Module 2: Route Generation via OSRM.
 """
 
@@ -24,7 +24,7 @@ logging.basicConfig(
 settings = get_settings()
 
 app = FastAPI(
-    title="SafeRoute AI API",
+    title="RouteGuard AI API",
     description="Safety-focused navigation backend for Bengaluru, India.",
     version=settings.app_version,
 )

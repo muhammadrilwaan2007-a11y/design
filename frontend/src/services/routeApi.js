@@ -1,6 +1,6 @@
-/**
+﻿/**
  * routeApi.js
- * Frontend service for the SafeRoute AI routing API.
+ * Frontend service for the RouteGuard AI routing API.
  *
  * Calls POST /api/routes on the FastAPI backend.
  * The frontend never calls OSRM directly.

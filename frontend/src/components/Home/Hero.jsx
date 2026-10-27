@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Navigation, ShieldCheck, Sparkles } from 'lucide-react';
 
@@ -45,7 +45,7 @@ export default function Hero() {
  return (
   <section className="relative overflow-hidden pt-10 pb-16 md:py-20 lg:py-24 bg-gradient-to-b from-white via-slate-50/50 to-white">
    {/* Subtle background ambient glow */}
-   <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl -z-10 pointer-events-none" />
+   <div className="absolute top-0 right-1/4 w-96 h-96 bg-indigo-100/40 rounded-full blur-3xl -z-10 pointer-events-none" />
    <div className="absolute top-1/3 left-10 w-80 h-80 bg-teal-100/30 rounded-full blur-3xl -z-10 pointer-events-none" />
 
    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,9 +61,9 @@ export default function Hero() {
       {/* Trust badge / micro-pill */}
       <motion.div
        variants={itemVariants}
-       className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50/90 border border-blue-200/80 text-blue-700 text-xs sm:text-sm font-medium mb-6 shadow-2xs"
+       className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50/90 border border-indigo-200/80 text-indigo-700 text-xs sm:text-sm font-medium mb-6 shadow-2xs"
       >
-       <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+       <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
        <span>Intelligent Road Safety Navigation</span>
       </motion.div>
 
@@ -74,7 +74,7 @@ export default function Hero() {
       >
        Every Journey <br />
        Deserves{' '}
-       <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-700 to-teal-500">
+       <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-indigo-600 to-cyan-500">
         Safety
        </span>
       </motion.h1>
@@ -94,7 +94,7 @@ export default function Hero() {
         onClick={() => navigate('/map')}
         whileHover={{ scale: 1.025, y: -1 }}
         whileTap={{ scale: 0.98 }}
-        className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-base sm:text-lg shadow-lg shadow-blue-600/25 transition-colors duration-150 cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-600/30"
+        className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-semibold text-base sm:text-lg shadow-lg shadow-indigo-500/25 transition-colors duration-150 cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-600/30"
        >
         <span>Start Safe Navigation</span>
         <Navigation className="w-5 h-5 rotate-45" />

@@ -1,7 +1,7 @@
-/**
+﻿/**
  * frontend/src/components/Safety/ShapExplanationPanel.jsx
  * ==========================================================
- * Local SHAP Explanation Panel — SafeRoute AI
+ * Local SHAP Explanation Panel — RouteGuard AI
  *
  * Renders why the XGBoost model produced a specific risk
  * prediction for a clicked OSM road edge on the heatmap.
@@ -163,7 +163,7 @@ export default function ShapExplanationPanel({ explanation, loading, error, edge
      <div className="w-2 h-2 rounded-full bg-white/70 shrink-0" />
      <div className="min-w-0">
       <p className="text-white font-bold text-xs">Risk</p>
-      <p className="text-blue-100 text-[10px] truncate">{edgeName}</p>
+      <p className="text-indigo-100 text-[10px] truncate">{edgeName}</p>
      </div>
     </div>
     {onClose && (
@@ -243,7 +243,7 @@ export default function ShapExplanationPanel({ explanation, loading, error, edge
       <button
        type="button"
        onClick={() => setShowAll((v) => !v)}
-       className="w-full flex items-center justify-center gap-1.5 text-[10px] font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 py-1 transition-colors"
+       className="w-full flex items-center justify-center gap-1.5 text-[10px] font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 py-1 transition-colors"
       >
        {showAll ? (
         <><ChevronUp size={12} /> Hide all factors</>

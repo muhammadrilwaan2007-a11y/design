@@ -1,6 +1,6 @@
-"""
+﻿"""
 backend/app/db/supabase_client.py
-Supabase async client singleton for SafeRoute AI.
+Supabase async client singleton for RouteGuard AI.
 
 Uses supabase-py v2 AsyncClient.
 The client is created once per application lifetime and cached.

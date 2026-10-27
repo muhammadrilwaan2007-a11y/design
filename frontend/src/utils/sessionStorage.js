@@ -1,7 +1,7 @@
-/**
+﻿/**
  * frontend/src/utils/sessionStorage.js
  * =====================================
- * Utilities for persisting and restoring the SafeRoute AI user session
+ * Utilities for persisting and restoring the RouteGuard AI user session
  * ONLY across page refreshes (F5 / reload in the existing page/tab).
  *
  * Uses window.sessionStorage exclusively so that when the browser tab or app
@@ -20,7 +20,7 @@ export function loadMapSession() {
     if (!raw) return null;
     return JSON.parse(raw);
   } catch (err) {
-    console.warn('[SafeRoute AI] Failed to parse saved session:', err);
+    console.warn('[RouteGuard AI] Failed to parse saved session:', err);
     return null;
   }
 }
@@ -31,7 +31,7 @@ export function saveMapSession(data) {
     // Strictly sessionStorage — survives page refresh, cleared when app or tab is closed
     sessionStorage.setItem(STORAGE_KEY, serialized);
   } catch (err) {
-    console.warn('[SafeRoute AI] Failed to save session:', err);
+    console.warn('[RouteGuard AI] Failed to save session:', err);
   }
 }
 
@@ -40,6 +40,6 @@ export function clearMapSession() {
     sessionStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem(STORAGE_KEY);
   } catch (err) {
-    console.warn('[SafeRoute AI] Failed to clear session:', err);
+    console.warn('[RouteGuard AI] Failed to clear session:', err);
   }
 }

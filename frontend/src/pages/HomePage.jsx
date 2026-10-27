@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import HomeNavbar from '../components/Home/HomeNavbar';
 import Hero from '../components/Home/Hero';
 import FeatureStrip from '../components/Home/FeatureStrip';
@@ -10,11 +10,11 @@ export default function HomePage() {
  // Ensure HomePage is always in clean light theme
  useEffect(() => {
   document.documentElement.classList.remove('dark');
-  document.title = 'SafeRoute AI — Intelligent Route Safety Navigation';
+  document.title = 'RouteGuard AI — Intelligent Route Safety Navigation';
  }, []);
 
  return (
-  <div className="min-h-screen flex flex-col bg-white text-slate-900 selection:bg-blue-100 selection:text-blue-900">
+  <div className="min-h-screen flex flex-col bg-white text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
    <HomeNavbar />
    <main className="flex-grow">
     <Hero />

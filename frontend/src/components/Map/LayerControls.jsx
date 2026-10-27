@@ -1,7 +1,7 @@
-/**
+﻿/**
  * frontend/src/components/Map/LayerControls.jsx
  * ==============================================
- * Layer Control Panel and Legend for SafeRoute AI Map.
+ * Layer Control Panel and Legend for RouteGuard AI Map.
  *
  * Visual Polish:
  *  - Sleek frosted glassmorphic card (backdrop-blur-md)
@@ -116,7 +116,7 @@ export default function LayerControls({
       {/* 4. Weather */}
       <div className="flex items-center justify-between py-0.5">
        <span className="flex items-center gap-2 font-medium text-slate-700 dark:text-slate-200 text-xs">
-        <CloudSun size={13} className="text-blue-500" />
+        <CloudSun size={13} className="text-indigo-500" />
         <span>Weather</span>
        </span>
        <ToggleSwitch

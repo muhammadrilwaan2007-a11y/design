@@ -1,10 +1,10 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+﻿import { Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import MapPage from './pages/MapPage';
 
 /**
  * App — root router.
- * - "/" renders the modern SafeRoute AI Landing Page.
+ * - "/" renders the modern RouteGuard AI Landing Page.
  * - "/map" renders the interactive Map application.
  */
 export default function App() {

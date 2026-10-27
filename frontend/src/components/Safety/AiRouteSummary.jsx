@@ -1,4 +1,4 @@
-/**
+﻿/**
  * frontend/src/components/Safety/AiRouteSummary.jsx
  * =================================================
  * Displays the LLM-powered "AI Route Summary" for the currently active route.
@@ -97,7 +97,7 @@ export default function AiRouteSummary({
             AI Route Summary
           </span>
           <span className="text-[10px] bg-indigo-200/60 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-300 px-1.5 py-0.5 rounded-full font-mono">
-            SafeRoute AI
+            RouteGuard AI
           </span>
         </div>
 

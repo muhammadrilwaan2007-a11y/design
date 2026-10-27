@@ -1,7 +1,7 @@
 """
 backend/app/services/llm_service.py
 ===================================
-SafeRoute AI — AI Safety Assistant Service (Groq API + GPT-OSS 120B)
+RouteGuard AI — AI Safety Assistant Service (Groq API + GPT-OSS 120B)
 
 Architecture Position:
 ----------------------
@@ -40,9 +40,9 @@ from app.config.settings import get_settings
 logger = logging.getLogger(__name__)
 
 # ── Dedicated System Prompt for GPT-OSS ─────────────────────────────────────────
-SYSTEM_PROMPT = """You are SafeRoute AI's safety explanation assistant.
+SYSTEM_PROMPT = """You are RouteGuard AI's safety explanation assistant.
 
-Your job is to explain structured evidence produced by SafeRoute AI.
+Your job is to explain structured evidence produced by RouteGuard AI.
 
 The historical Safety Score is calculated by the backend using XGBoost and calibrated historical risk.
 
@@ -365,7 +365,7 @@ class LLMSafetyService:
 
         settings = get_settings()
         user_message_content = (
-            f"STRUCTURED EVIDENCE FROM SAFEROUTE AI:\n"
+            f"STRUCTURED EVIDENCE FROM RouteGuard AI:\n"
             f"```json\n{json.dumps(structured_context, indent=2)}\n```\n\n"
             f"TASK:\n{task_prompt}\n\n"
             f"Remember: Do not invent numbers, do not recalculate scores, and keep the explanation concise and clear."
@@ -486,8 +486,27 @@ class LLMSafetyService:
         context: Dict[str, Any],
         question: str,
     ) -> str:
-        """Answer a user query strictly using the provided structured evidence."""
-        task_prompt = f"Answer the user query: '{question}' using strictly the evidence provided. If information is unavailable, say so clearly."
+        """Answer a user query using the provided structured evidence.
+
+        Handles greetings, general questions, route-safety questions, and live
+        condition queries. Falls back gracefully when specific data is missing.
+        """
+        task_prompt = (
+            f"User question: '{question}'\n\n"
+            "Instructions:\n"
+            "1. If the question is a greeting (e.g., 'hi', 'hello') or asks who you are, "
+            "briefly introduce yourself as RouteGuard AI's safety assistant and invite the "
+            "user to ask about route safety, risk factors, or live conditions — keep it to 1-2 bullet points.\n"
+            "2. If the question is about live conditions (weather, traffic, incidents), "
+            "answer using the 'live_conditions' data in the evidence. If unavailable, say so.\n"
+            "3. If the question is about route safety or risk scores, use the "
+            "'selected_section', 'route_safety_score', or 'alternative_routes' data. "
+            "If no route is selected yet, tell the user to select a route first.\n"
+            "4. For all other questions, answer as best you can from the evidence, "
+            "or clearly state what information is missing.\n"
+            "5. Always use short bullet points (simple '- ' prefix, no asterisks, no headers). "
+            "Keep each bullet to 1 clear sentence. Maximum 3-4 bullets."
+        )
         return self.generate_explanation(context, task_prompt, max_tokens=800)
 
 

@@ -1,8 +1,8 @@
-/**
+﻿/**
  * frontend/src/components/Map/HistoricalRiskHeatmap.jsx
  * ====================================================
  * High-polish GIS rendering of historical road-risk predictions
- * directly on OpenStreetMap road edges for the SafeRoute AI Leaflet map.
+ * directly on OpenStreetMap road edges for the RouteGuard AI Leaflet map.
  *
  * Visual Excellence & Polish Features:
  *  - Adaptive hierarchy-based line widths (arterials stand out, residential streets stay subtle)

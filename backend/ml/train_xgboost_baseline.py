@@ -1,7 +1,7 @@
-"""
+﻿"""
 ml/train_xgboost_baseline.py
 ============================
-SafeRoute AI — XGBoost V2 Baseline Classifier
+RouteGuard AI — XGBoost V2 Baseline Classifier
 ==============================================
 
 Target:
@@ -240,7 +240,7 @@ def evaluate(name: str, model, X, y_true, threshold=DECISION_THRESHOLD) -> dict:
 # MAIN
 # ──────────────────────────────────────────────────────────────────────────────
 def main():
-    _hr("SafeRoute AI — XGBoost Baseline Training")
+    _hr("RouteGuard AI — XGBoost Baseline Training")
 
     # 1. Load
     df = load_and_prepare(CSV_PATH)

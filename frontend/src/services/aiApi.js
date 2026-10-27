@@ -1,7 +1,7 @@
-/**
+﻿/**
  * frontend/src/services/aiApi.js
  * ===============================
- * API client for the SafeRoute AI Safety Assistant (FastAPI backend).
+ * API client for the RouteGuard AI Safety Assistant (FastAPI backend).
  * Calls the backend /api/ai endpoints.
  *
  * CRITICAL SECURITY RULE:

@@ -1,7 +1,7 @@
-"""
+﻿"""
 backend/app/features/osm_matcher.py
 ===================================
-SafeRoute AI — Map matching layer between TomTom route segments and
+RouteGuard AI — Map matching layer between TomTom route segments and
 the underlying OpenStreetMap (OSM) road network.
 
 Purpose:

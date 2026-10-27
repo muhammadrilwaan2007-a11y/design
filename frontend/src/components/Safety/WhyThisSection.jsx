@@ -1,4 +1,4 @@
-/**
+﻿/**
  * frontend/src/components/Safety/WhyThisSection.jsx
  * =================================================
  * Dedicated "Why This Section?" UI panel.
@@ -8,7 +8,7 @@
  *  - Natural-language explanation from GPT-OSS 120B (Groq)
  *  - Model factors (with directional arrows and human statements)
  *  - Live conditions (Traffic, Incidents, Weather)
- *  - Interactive "Ask SafeRoute AI" question interface
+ *  - Interactive "Ask RouteGuard AI" question interface
  *
  * CRITICAL ARCHITECTURE RULES:
  *  1. Numerical SHAP evidence and Safety Score come verbatim from the backend.
@@ -134,7 +134,7 @@ export default function WhyThisSection({
               Why This Section?
             </h3>
             <p className="text-[10px] text-indigo-200/70 font-mono">
-              SafeRoute AI Intelligence
+              RouteGuard AI Intelligence
             </p>
           </div>
         </div>
@@ -324,12 +324,12 @@ export default function WhyThisSection({
           </div>
         )}
 
-        {/* ── "Ask SafeRoute AI" Section ── */}
+        {/* ── "Ask RouteGuard AI" Section ── */}
         <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
           <div className="flex items-center justify-between mb-2">
             <span className="text-[11px] font-bold text-slate-700 dark:text-slate-200 flex items-center gap-1">
               <HelpCircle size={12} className="text-indigo-500" />
-              Ask SafeRoute AI
+              Ask RouteGuard AI
             </span>
             {onOpenChat && (
               <button

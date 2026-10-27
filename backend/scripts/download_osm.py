@@ -1,4 +1,4 @@
-import osmnx as ox
+﻿import osmnx as ox
 import pandas as pd
 from pathlib import Path
 import sys
@@ -71,7 +71,7 @@ def run_pipeline():
         hw_dist = pd.Series(dtype=int)
         
     print("\n================================")
-    print("SafeRoute AI - OSM Network Report")
+    print("RouteGuard AI - OSM Network Report")
     print("================================\n")
     print("City:")
     print(city_name + "\n")

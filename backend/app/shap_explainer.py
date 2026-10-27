@@ -1,7 +1,7 @@
-"""
+﻿"""
 backend/app/shap_explainer.py
 ==============================
-SafeRoute AI — Local SHAP Explanation Layer
+RouteGuard AI — Local SHAP Explanation Layer
 
 Architecture position
 ---------------------

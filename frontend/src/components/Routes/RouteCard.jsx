@@ -1,4 +1,4 @@
-/**
+﻿/**
  * RouteCard.jsx
  * Displays a single candidate route's summary information.
  *
@@ -133,7 +133,7 @@ export default function RouteCard({
      ) : null}
 
      {isFastest && !isRecommended && !isRecommendedAlternative && !hasRoadClosure && (
-      <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-blue-700 dark:text-blue-300 bg-blue-100/80 dark:bg-blue-900/50 px-2 py-0.5 rounded-full">
+      <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-indigo-700 dark:text-indigo-300 bg-indigo-100/80 dark:bg-indigo-900/50 px-2 py-0.5 rounded-full">
        ⚡ Fastest Route
       </span>
      )}

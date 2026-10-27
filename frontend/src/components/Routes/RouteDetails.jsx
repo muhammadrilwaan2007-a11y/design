@@ -20,10 +20,11 @@
  */
 
 import { MapPin, Clock, ArrowRight, AlertTriangle, ShieldCheck, AlertOctagon, Sparkles, HelpCircle } from 'lucide-react';
-import SafetyScoreCard  from '../Safety/SafetyScoreCard';
-import SegmentSafetyList from '../Safety/SegmentSafetyList';
-import LiveConditionsCard from '../Safety/LiveConditionsCard';
-import AiRouteSummary from '../Safety/AiRouteSummary';
+import SafetyScoreCard   from '../Safety/SafetyScoreCard';
+import SegmentSafetyList  from '../Safety/SegmentSafetyList';
+import LiveConditionsCard  from '../Safety/LiveConditionsCard';
+import AiRouteSummary    from '../Safety/AiRouteSummary';
+import TimeOfDaySlider   from '../Safety/TimeOfDaySlider';
 
 const ROUTE_COLORS = ['#2563EB', '#F59E0B', '#8B5CF6'];
 
@@ -85,6 +86,7 @@ export default function RouteDetails({
  isSimulatedClosed = false,
  onRetryFeatures = null,
  onOpenAiAssistant = null,
+ onSelectPreset = null,
 }) {
  if (!route) return null;
 
@@ -269,6 +271,13 @@ export default function RouteDetails({
     loading={featuresLoading}
     error={featuresError}
     onRetry={onRetryFeatures}
+    route={route}
+    onSelectPreset={onSelectPreset}
+   />
+
+   {/* ── Time-of-Day Safety Slider (new additive feature) ─────────────── */}
+   <TimeOfDaySlider
+    baseScore={featureData?.route_safety_score ?? null}
    />
 
    {/* ── Module 8: Segment-level Safety Scores ───────────────────────── */}
@@ -377,7 +386,7 @@ export default function RouteDetails({
     </div>
    )}
 
-   {/* ── Ask SafeRoute AI Trigger Button ── */}
+   {/* ── Ask RouteGuard AI Trigger Button ── */}
    {onOpenAiAssistant && (
     <button
      type="button"
@@ -385,7 +394,7 @@ export default function RouteDetails({
      className="w-full flex items-center justify-center gap-2 p-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-semibold text-xs transition-all duration-200 shadow-md hover:shadow-lg group"
     >
      <Sparkles size={15} className="group-hover:rotate-12 transition-transform" />
-     <span>Ask SafeRoute AI About This Route</span>
+     <span>Ask RouteGuard AI About This Route</span>
     </button>
    )}
   </div>

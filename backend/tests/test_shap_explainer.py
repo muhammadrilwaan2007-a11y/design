@@ -1,7 +1,7 @@
-"""
+﻿"""
 backend/tests/test_shap_explainer.py
 ======================================
-SafeRoute AI — Local SHAP Explainer Test Suite (16 tests)
+RouteGuard AI — Local SHAP Explainer Test Suite (16 tests)
 
 Tests all requirements from the SHAP implementation spec:
   1. Local SHAP can explain a valid OSM edge.

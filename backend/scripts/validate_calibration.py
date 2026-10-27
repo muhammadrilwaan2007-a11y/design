@@ -1,7 +1,7 @@
-"""
+﻿"""
 backend/scripts/validate_calibration.py
 =======================================
-SafeRoute AI — Calibration Validation Script
+RouteGuard AI — Calibration Validation Script
 
 Performs rigorous statistical calibration validation on the untouched held-out test set:
 1. Raw XGBoost probability
@@ -152,7 +152,7 @@ def compute_calibration_slope_intercept(
 
 def main():
     print("=" * 80)
-    print("SafeRoute AI — Calibration Validation on Untouched Held-Out Test Set")
+    print("RouteGuard AI — Calibration Validation on Untouched Held-Out Test Set")
     print("=" * 80)
 
     # 1. Load data and split
